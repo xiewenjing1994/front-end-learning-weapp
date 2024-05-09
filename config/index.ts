@@ -1,5 +1,6 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
+import path from 'path';
 import devConfig from './dev'
 import prodConfig from './prod'
 
@@ -54,8 +55,12 @@ export default defineConfig(async (merge, { command, mode }) => {
           }
         }
       },
-      webpackChain(chain) {
-        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      webpackChain(chain, webpack) {
+        chain.resolve.alias
+          .set('@', path.resolve(__dirname, '..', 'src'))  // 可选的额外别名设置
+
+        chain.resolve.plugin('tsconfig-paths')
+          .use(TsconfigPathsPlugin, [{ configFile: './tsconfig.json' }]);  // 确保引用了正确的 tsconfig 文件
       }
     },
     h5: {

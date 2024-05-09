@@ -1,15 +1,21 @@
-import { PropsWithChildren } from 'react'
-import { useLaunch } from '@tarojs/taro'
-import './app.less'
+import Taro, { Component } from '@tarojs/taro';
+import { Provider } from 'react-redux';
+import {store} from "@/store"; // 确保路径正确
+import './app.less';
+import './mock/index';
 
-function App({ children }: PropsWithChildren<any>) {
+class App extends Component {
+  componentDidMount() {
+    console.log('App launched.');
+  }
 
-  useLaunch(() => {
-    console.log('App launched.')
-  })
-
-  // children 是将要会渲染的页面
-  return children
+  render() {
+    return (
+      <Provider store={store}>
+        {this.props.children}
+        </Provider>
+    );
+  }
 }
 
-export default App
+export default App;
