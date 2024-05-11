@@ -1,13 +1,13 @@
 import Taro from '@tarojs/taro';
-import store from '../../store';
+import {store} from "@/store";
 import {setLoading} from "@/store/loadingSlice";
 
 // 设置全局默认配置
 // Taro.request.defaults.baseUrl = 'https://your-api-url.com'; // 设置默认的基础URL
-Taro.request.defaults.header = {
-  'Content-Type': 'application/json', // 设置默认的头信息
-  'Authorization': 'Bearer your-token' // 示例：添加默认的认证头
-};
+// Taro.request.defaults.header = {
+//   'Content-Type': 'application/json', // 设置默认的头信息
+//   'Authorization': 'Bearer your-token' // 示例：添加默认的认证头
+// };
 
 export const setupInterceptors = () => {
   // 添加请求拦截器
@@ -17,6 +17,8 @@ export const setupInterceptors = () => {
     const newRequestParams = {
       ...requestParams,
       header: {
+        'Content-Type': 'application/json', // 设置默认的头信息
+        'Authorization': 'Bearer your-token', // 示例：添加默认的认证头
         ...requestParams.header,
       }
     };

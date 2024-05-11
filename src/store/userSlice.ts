@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {createAsyncRequest} from "@/utils/http/createAsyncRequest";
 
 interface LoginRequest {
-  userName: string;
+  username: string;
   password: string;
 }
 
@@ -13,9 +13,9 @@ interface LoginResponse {
 }
 
 // 创建登录请求的异步 thunk
-const login = createAsyncRequest<LoginResponse>('user/login', {
+export const login = createAsyncRequest<LoginResponse>('user/login', {
   url: '/api/login',
-  method: 'POST'
+  method: 'POST',
 });
 
 const initialState = {
@@ -35,5 +35,4 @@ const userSlice = createSlice({
   }
 });
 
-export const { login } = userSlice.actions;
 export default userSlice.reducer;
