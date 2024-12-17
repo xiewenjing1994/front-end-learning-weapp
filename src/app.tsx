@@ -3,7 +3,6 @@ import { useLaunch } from '@tarojs/taro';
 import { Provider } from 'react-redux';
 import {store} from "@/store"; // 确保路径正确
 import setupInterceptors from './utils/http/axios';
-import './utils/polyfill';
 import './app.less';
 import './mock/index';
 

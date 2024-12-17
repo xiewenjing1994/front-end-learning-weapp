@@ -1,8 +1,7 @@
 export default defineAppConfig({
   pages: [
+    'pages/index/index', // 启动页
     'pages/home/index',
-    'pages/index/index',
-    'pages/login/index',
   ],
   window: {
     backgroundTextStyle: 'light',
